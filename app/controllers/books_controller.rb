@@ -17,6 +17,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     if @book.update(book_params)
       flash[:notice] = "Book was successfully created."
+      redirect_to book_path(@book.id)
     else
       flash[:danger] = @book.errors.full_messages
       render :edit
@@ -28,6 +29,7 @@ class BooksController < ApplicationController
     @book.save
     if @book.save
       flash[:notice] = "Book was successfully created."
+      redirect_to book_path(@book.id)
     else
       flash[:danger] = @book.errors.full_messages
       @books = Book.all
